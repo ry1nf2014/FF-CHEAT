@@ -32,9 +32,9 @@ namespace BLUE_C_
         // private Thread monitorThread;
         // private bool isMonitoring = true;
         private static FAHIM PLAYBOX = new FAHIM();
-        private string aimAOB = "FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 A5 43";
-        private string readFORhead = "0x80";
-        private string write = "0X7C";
+        private string aimAOB = "FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 FF FF FF FF FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? ?? 00 00 00 00 00 00 00 00 00 00 00 00 A5 43";
+        private string readFORhead = "0XAC";
+        private string write = "0XA8";
         private Dictionary<long, int> originalvalues = new Dictionary<long, int>();
         private Dictionary<long, int> originallvalues = new Dictionary<long, int>();
         private Dictionary<long, int> originalvalues2 = new Dictionary<long, int>();
@@ -312,34 +312,36 @@ namespace BLUE_C_
             if (Process.GetProcessesByName("HD-Player").Length == 0)
             {
                 Console.Beep(240, 300);
+                return;
+            }
+
+            // Your long AOB scan and replace logic goes here.
+            string search = "3F 00 00 80 3E 00 00 00 00 04 00 00 00 00 00 80 3F 00 00 20 41 00 00 34 42 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F";
+            string replace = "01 00 00 80 00 00 00 00 00 04 00 00 00 00 00 80 3F 00 00 20 41 00 00 34 42 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F";
+            bool k = false;
+
+            Memory.OpenProcess("HD-Player");
+            IEnumerable<long> wl = await Memory.AoBScan(search, writable: true);
+            if (wl.Any())
+            {
+                foreach (long address in wl)
+                {
+                    Memory.WriteMemory(address.ToString("X"), "bytes", replace);
+                }
+                k = true;
+            }
+            if (k)
+            {
+                Console.Beep(400, 300);
             }
             else
             {
-                string search = "05 00 00 00 01 00 00 00 B4 C8 D6 3F 01 00 00 00 B4 C8 D6 3F 00 00 00 00 B4 C8 D6 3F 00 00 80 3F 00 00 80 3F 0A D7 A3 3D 00 00 00 00 00 00 5C 43 00 00 90 42 00 00 B4 42 96 00 00 00 00 00 00 00 00 00 00 3F 00 00 80 3E 00 00 00 00 04 00 00 00 00 00 80 3F 00 00 20 41 00 00 34 42 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00 80 3F 8F C2 35 3F 9A 99 99 3F 00 00 80 3F 00 00 00 00 00 00 80 3F 00 00 80 3F 00 00 80 3F 00 00 00 00 00 00 00 00 00 00";
-                string replace = "05 00 00 00 01 00 00 00 B4 C8 D6 3F 01 00 00 00 B4 C8 D6 3F 00 00 00 00 B4 C8 D6 3F 00 00 80 3F 00 00 80 3F 0A D7 A3 3D 00 00 00 00 00 00 5C 43 00 00 90 42 00 00 B4 42 96 00 00 00 00 00 00 00 00 00 00 3F 00 00 80 3E 00 00 00 3C 04 00 00 00 00 00 80 3F 00 00 20 41 00 00 34 42 01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 80 3F 8F C2 35 3F 9A 99 99 3F 00 00 80 3F 00 00 00 00 00 00 80 3F 00 00 80 3F 00 00 80 3F 00 00 00 00 00 00 00 00 00 00";
-                bool k = false;
-                Memory.OpenProcess("HD-Player");
-
-                IEnumerable<long> wl = await Memory.AoBScan(search, writable: true);
-                if (wl.Any())
-                {
-                    foreach (long address in wl)
-                    {
-                        Memory.WriteMemory(address.ToString("X"), "bytes", replace);
-                    }
-                    k = true;
-                }
-
-                if (k)
-                {
-                    Console.Beep(400, 300);
-                }
-                else
-                {
-                    Console.Beep(240, 300);
-                }
+                Console.Beep(240, 300);
             }
         }
+    
+        
+        
 
         private async void guna2ToggleSwitch9_CheckedChanged(object sender, EventArgs e)
         {
@@ -584,6 +586,45 @@ namespace BLUE_C_
                     Console.Beep(240, 300); // Fail Beep
                 }
             }
+        }
+
+        private void guna2ToggleSwitch12_CheckedChanged(object sender, EventArgs e)
+        {
+            string processName = "HD-Player";
+            string dllResourceName = "SILVA_C_.ANTENA.dll";
+            string tempDllPath = Path.Combine(Path.GetTempPath(), "ANTENA.dll");
+            ExtractEmbeddedResource(dllResourceName, tempDllPath);
+            Console.WriteLine($"DLL extracted successfully to: {tempDllPath}");
+            Process[] targetProcesses = Process.GetProcessesByName(processName);
+            if (targetProcesses.Length == 0)
+            {
+                Console.WriteLine($"Waiting for {processName}.exe...");
+            }
+            else
+            {
+                Process targetProcess = targetProcesses[0];
+                IntPtr hProcess = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_QUERY_INFORMATION | PROCESS_VM_OPERATION | PROCESS_VM_WRITE | PROCESS_VM_READ, false, targetProcess.Id);
+
+                IntPtr loadLibraryAddr = GetProcAddress(GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+                IntPtr allocMemAddress = VirtualAllocEx(hProcess, IntPtr.Zero, (IntPtr)tempDllPath.Length, MEM_COMMIT, PAGE_READWRITE);
+
+                IntPtr bytesWritten;
+                WriteProcessMemory(hProcess, allocMemAddress, System.Text.Encoding.ASCII.GetBytes(tempDllPath), (uint)tempDllPath.Length, out bytesWritten);
+                CreateRemoteThread(hProcess, IntPtr.Zero, IntPtr.Zero, loadLibraryAddr, allocMemAddress, 0, IntPtr.Zero);
+
+                Console.Beep(240, 300);
+            }
+        
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }     
 }

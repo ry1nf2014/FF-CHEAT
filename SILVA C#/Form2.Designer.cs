@@ -65,6 +65,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.guna2ToggleSwitch11 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
             this.label16 = new System.Windows.Forms.Label();
+            this.guna2ToggleSwitch12 = new Guna.UI2.WinForms.Guna2ToggleSwitch();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.guna2CirclePictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +96,7 @@
             this.guna2CirclePictureBox1.TabIndex = 4;
             this.guna2CirclePictureBox1.TabStop = false;
             this.guna2CirclePictureBox1.UseTransparentBackground = true;
+            this.guna2CirclePictureBox1.Click += new System.EventHandler(this.guna2CirclePictureBox1_Click);
             // 
             // label1
             // 
@@ -105,6 +108,7 @@
             this.label1.Size = new System.Drawing.Size(284, 42);
             this.label1.TabIndex = 3;
             this.label1.Text = "RYAN CHEATS";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // guna2Separator1
             // 
@@ -270,7 +274,7 @@
             this.guna2ToggleSwitch5.CheckedState.FillColor = System.Drawing.Color.Red;
             this.guna2ToggleSwitch5.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.guna2ToggleSwitch5.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.guna2ToggleSwitch5.Location = new System.Drawing.Point(429, 163);
+            this.guna2ToggleSwitch5.Location = new System.Drawing.Point(429, 159);
             this.guna2ToggleSwitch5.Name = "guna2ToggleSwitch5";
             this.guna2ToggleSwitch5.Size = new System.Drawing.Size(43, 20);
             this.guna2ToggleSwitch5.TabIndex = 19;
@@ -511,12 +515,41 @@
             this.label16.TabIndex = 35;
             this.label16.Text = "DAMAGE FIX";
             // 
+            // guna2ToggleSwitch12
+            // 
+            this.guna2ToggleSwitch12.CheckedState.BorderColor = System.Drawing.Color.Red;
+            this.guna2ToggleSwitch12.CheckedState.FillColor = System.Drawing.Color.Red;
+            this.guna2ToggleSwitch12.CheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch12.CheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch12.Location = new System.Drawing.Point(178, 362);
+            this.guna2ToggleSwitch12.Name = "guna2ToggleSwitch12";
+            this.guna2ToggleSwitch12.Size = new System.Drawing.Size(43, 20);
+            this.guna2ToggleSwitch12.TabIndex = 38;
+            this.guna2ToggleSwitch12.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2ToggleSwitch12.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.guna2ToggleSwitch12.UncheckedState.InnerBorderColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch12.UncheckedState.InnerColor = System.Drawing.Color.White;
+            this.guna2ToggleSwitch12.CheckedChanged += new System.EventHandler(this.guna2ToggleSwitch12_CheckedChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(18, 362);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(119, 16);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "CHAMS ANTENNA";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(537, 447);
+            this.Controls.Add(this.guna2ToggleSwitch12);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.guna2ToggleSwitch11);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.guna2ToggleSwitch10);
@@ -599,5 +632,7 @@
         private System.Windows.Forms.Label label14;
         private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch11;
         private System.Windows.Forms.Label label16;
+        private Guna.UI2.WinForms.Guna2ToggleSwitch guna2ToggleSwitch12;
+        private System.Windows.Forms.Label label17;
     }
 }

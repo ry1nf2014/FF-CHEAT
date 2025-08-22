@@ -159,6 +159,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Moco.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ANTENA.dll" />
+    <Content Include="Memory.dll" />
+    <Content Include="PANEL.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.9.2\build\Fody.targets" Condition="Exists('..\packages\Fody.6.9.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
