@@ -105,9 +105,9 @@
             this.label1.ForeColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(71, 6);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(284, 42);
+            this.label1.Size = new System.Drawing.Size(228, 42);
             this.label1.TabIndex = 3;
-            this.label1.Text = "RYAN CHEATS";
+            this.label1.Text = "FF-CHEATS";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // guna2Separator1

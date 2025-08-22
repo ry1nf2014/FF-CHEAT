@@ -243,7 +243,7 @@ namespace BLUE_C_
         private async void guna2ToggleSwitch4_CheckedChanged(object sender, EventArgs e)
         {
             string processName = "HD-Player";
-            string dllResourceName = "SILVA_C_.CHAMS MENU.dll";
+            string dllResourceName = "FF_CHEATS.CHAMS MENU.dll";
             string tempDllPath = Path.Combine(Path.GetTempPath(), "CHAMS MENU.dll");
             ExtractEmbeddedResource(dllResourceName, tempDllPath);
             Console.WriteLine($"DLL extracted successfully to: {tempDllPath}");
@@ -500,7 +500,7 @@ namespace BLUE_C_
         private void guna2ToggleSwitch7_CheckedChanged(object sender, EventArgs e)
         {
             string processName = "HD-Player";
-            string dllResourceName = "SILVA_C_.Moco.dll";
+            string dllResourceName = "FF_CHEATS.Moco.dll";
             string tempDllPath = Path.Combine(Path.GetTempPath(), "Moco.dll");
             ExtractEmbeddedResource(dllResourceName, tempDllPath);
             Console.WriteLine($"DLL extracted successfully to: {tempDllPath}");
@@ -591,7 +591,7 @@ namespace BLUE_C_
         private void guna2ToggleSwitch12_CheckedChanged(object sender, EventArgs e)
         {
             string processName = "HD-Player";
-            string dllResourceName = "SILVA_C_.ANTENA.dll";
+            string dllResourceName = "FF_CHEATS.ANTENA.dll";
             string tempDllPath = Path.Combine(Path.GetTempPath(), "ANTENA.dll");
             ExtractEmbeddedResource(dllResourceName, tempDllPath);
             Console.WriteLine($"DLL extracted successfully to: {tempDllPath}");
